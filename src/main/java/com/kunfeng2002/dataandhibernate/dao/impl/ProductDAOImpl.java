@@ -3,6 +3,7 @@ package com.kunfeng2002.dataandhibernate.dao.impl;
 import com.kunfeng2002.dataandhibernate.model.Product;
 import com.kunfeng2002.dataandhibernate.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -31,25 +32,25 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public Product getProductById(int id) {
+    public Product getProductById(int id) throws DataAccessException {
         String sql = "SELECT * FROM product WHERE idProduct = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, productRowMapper);
     }
 
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(Product product) throws DataAccessException{
         String sql = "INSERT INTO product(`idProduct`, `nameProduct`, `priceProduct`) VALUES (?,?,?)";
         jdbcTemplate.update(sql, product.getPid(), product.getPname(), product.getPprice());
     }
 
     @Override
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product) throws DataAccessException{
         String sql = "UPDATE product SET nameProduct = ?, priceProduct = ? WHERE idProduct = ?";
         jdbcTemplate.update(sql, product.getPname(), product.getPprice(), product.getPid());
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(int id) throws DataAccessException{
         String sql = "DELETE FROM product WHERE idProduct = ?";
         jdbcTemplate.update(sql, id);
     }
