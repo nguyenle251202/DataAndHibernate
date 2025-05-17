@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/product")
 public class ProductCtrl {
 
     private final ProductDAO productDAO;
@@ -17,31 +18,31 @@ public class ProductCtrl {
         this.productDAO = productDAO;
     }
 
-    @GetMapping("/product")
+    @GetMapping("/getall")
     public List<Product> getProducts() throws DataAccessException{
         List<Product> products = productDAO.productList();
         return products;
     }
 
-    @PostMapping("/product/{id}")
+    @PostMapping("/get/{id}")
     public Product getProduct(@PathVariable int id) throws DataAccessException{
         Product product = productDAO.getProductById(id);
         return product;
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody List<Product> product){
         productDAO.addProduct(product);
         return null;
     }
 
-    @PostMapping("/product/update")
+    @PostMapping("/update")
     public ResponseEntity<Product> updateProduct(@RequestBody List<Product> product) throws DataAccessException{
         productDAO.updateProduct(product);
         return null;
     }
 
-    @PostMapping("/product/delete/{id}")
+    @PostMapping("/delete/{id}")
     public void deleteProduct(@PathVariable int id) throws DataAccessException{
         productDAO.deleteProduct(id);
     }
