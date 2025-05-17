@@ -2,9 +2,11 @@ package com.kunfeng2002.dataandhibernate.controller;
 
 import com.kunfeng2002.dataandhibernate.dao.ProductDAO;
 import com.kunfeng2002.dataandhibernate.model.Product;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,7 @@ public class ProductCtrl {
     }
 
     @PostMapping("/product/add")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) throws SQLException {
         productDAO.addProduct(product);
         return ResponseEntity.ok(product);
         }

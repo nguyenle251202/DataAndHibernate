@@ -4,11 +4,9 @@ import com.kunfeng2002.dataandhibernate.model.Product;
 import com.kunfeng2002.dataandhibernate.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -42,22 +40,12 @@ public class ProductDAOImpl implements ProductDAO {
     public void addProduct(Product product) {
         String sql = "INSERT INTO product(`idProduct`, `nameProduct`, `priceProduct`) VALUES (?,?,?)";
         jdbcTemplate.update(sql, product.getPid(), product.getPname(), product.getPprice());
-//        {
-//            "pname": "a",
-//                "pprice": 200.0,
-//                "pid": 1010
-//        }
     }
 
     @Override
     public void updateProduct(Product product) {
         String sql = "UPDATE product SET nameProduct = ?, priceProduct = ? WHERE idProduct = ?";
         jdbcTemplate.update(sql, product.getPname(), product.getPprice(), product.getPid());
-//        {
-//            "pid": 20,
-//            "pprice": 2.0,
-//            "pname": "fasd"
-//        }
     }
 
     @Override
