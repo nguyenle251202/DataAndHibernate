@@ -4,8 +4,7 @@ import com.kunfeng2002.dataandhibernate.model.Product;
 import com.kunfeng2002.dataandhibernate.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,15 +37,23 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void addProduct(Product product) throws DataAccessException{
-        String sql = "INSERT INTO product(`idProduct`, `nameProduct`, `priceProduct`) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, product.getPid(), product.getPname(), product.getPprice());
+    public void addProduct (List<Product> products){
+        String sql = "INSERT INTO product(idProduct, nameProduct, priceProduct) VALUES (?,?,?)";
+        jdbcTemplate.batchUpdate(sql, products, products.size(), (ps, product) -> {
+            ps.setInt(1, product.getPid());
+            ps.setString(2, product.getPname());
+            ps.setDouble(3, product.getPprice());
+        });
     }
 
     @Override
-    public void updateProduct(Product product) throws DataAccessException{
+    public void updateProduct(List<Product> products) throws DataAccessException{
         String sql = "UPDATE product SET nameProduct = ?, priceProduct = ? WHERE idProduct = ?";
-        jdbcTemplate.update(sql, product.getPname(), product.getPprice(), product.getPid());
+        jdbcTemplate.batchUpdate(sql, products, products.size(), (ps, product) -> {
+            ps.setString(1, product.getPname());
+            ps.setDouble(2, product.getPprice());
+            ps.setInt(3, product.getPid());
+        });
     }
 
     @Override

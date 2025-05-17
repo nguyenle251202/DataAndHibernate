@@ -30,15 +30,15 @@ public class ProductCtrl {
     }
 
     @PostMapping("/product/add")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) throws DataAccessException{
+    public ResponseEntity<Product> addProduct(@RequestBody List<Product> product){
         productDAO.addProduct(product);
-        return ResponseEntity.ok(product);
-        }
+        return null;
+    }
 
     @PostMapping("/product/update")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws DataAccessException{
+    public ResponseEntity<Product> updateProduct(@RequestBody List<Product> product) throws DataAccessException{
         productDAO.updateProduct(product);
-        return ResponseEntity.ok(product);
+        return null;
     }
 
     @PostMapping("/product/delete/{id}")
