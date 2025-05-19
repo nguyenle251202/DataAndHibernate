@@ -6,6 +6,7 @@ import jakarta.persistence.Transient;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -23,4 +24,10 @@ public class Order {
     @Transient
     private OrderItem Oorderitem;
     private double Ototalprice;
+    private String month;
+
+    public Order(String month, double totalpriceMonth) {
+        this.month = month;
+        this.setOtotalprice(totalpriceMonth);
+    }
 }

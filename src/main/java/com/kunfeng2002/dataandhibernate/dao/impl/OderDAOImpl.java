@@ -22,20 +22,13 @@ public class OderDAOImpl implements OrderDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private CustomerDAO customerDAO;
-
-    private RowMapper<Order> orderRowMapper = (rs, rowNum) -> {
-       Order order = new Order();
-       order.setOid(rs.getInt("idOrder"));
-       order.setOdate(LocalDate.parse(rs.getString("dateOrder")));
-       order.getOorderitem();
-       order.setOtotalprice(rs.getDouble("totalpriceOrder"));
-       return order;
-    };
-
     @Override
-    public List<Order> orderList() throws DataAccessException {
-        String sql = "select * from orderdisplay";
-        return jdbcTemplate.query(sql, orderRowMapper);
+    public List<Order> MonthlyList() throws DataAccessException {
+        String sql = "select * from orderbymonth";
+        return jdbcTemplate.query(sql,
+                (rs, rowNum) -> new Order (
+                        rs.getString("month"),
+                        rs.getDouble("totalpriceMonth")
+                ));
     }
 }

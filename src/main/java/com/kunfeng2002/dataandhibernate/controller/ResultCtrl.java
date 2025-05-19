@@ -40,8 +40,9 @@ public class ResultCtrl {
         return totalRevenueCustomer;
     }
 
-    @GetMapping("/CategorizeOrdersMonth")
-    public String CategorizeOrdersMonth(HttpServletRequest request) {
-        return "CategorizeOrdersMonth";
+    @GetMapping("/CategorizeOrders/monthly")
+    public List<Order> ListMonthly() {
+        List<Order> monthlyList = orderDAO.MonthlyList();
+        return monthlyList;
     }
 }
