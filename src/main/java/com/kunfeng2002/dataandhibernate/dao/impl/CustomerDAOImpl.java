@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Repository
@@ -27,6 +28,18 @@ public class CustomerDAOImpl implements CustomerDAO {
     public List<Customer> getCustomers() {
         String sql = "select * from customer";
         return jdbcTemplate.query(sql, customerRowMapper);
+    }
+
+//    customer.setCtotal(rs.getDouble("totalpriceCustomer"))
+    @Override
+    public List<Customer> getTotal() {
+        String sql = "select * from customertotalspending";
+        return jdbcTemplate.query(sql,
+                (rs, rowNum) -> new Customer(
+                        rs.getInt("idCustomer"),
+                        rs.getString("nameCustomer"),
+                        rs.getDouble("totalpriceCustomer")
+                ));
     }
 
     @Override

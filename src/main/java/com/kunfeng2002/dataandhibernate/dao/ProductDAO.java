@@ -21,4 +21,6 @@ public interface ProductDAO {
     void updateProduct(List<Product> product) throws DataAccessException;
 
     void deleteProduct(int id) throws DataAccessException;
+
+    List<Product> HightestList() throws DataAccessException;
 }

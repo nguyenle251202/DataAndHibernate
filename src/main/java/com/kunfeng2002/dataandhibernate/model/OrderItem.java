@@ -1,18 +1,16 @@
 package com.kunfeng2002.dataandhibernate.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
-public class Customer {
-    @Id
-    private int Cid;
-    private String Cname;
-    private double Ctotal;
+public class OrderItem {
+    private Product product;
+    private double quantity;
+    private double price;
 }

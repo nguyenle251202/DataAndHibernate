@@ -2,7 +2,6 @@ package com.kunfeng2002.dataandhibernate.controller;
 
 import com.kunfeng2002.dataandhibernate.dao.CustomerDAO;
 import com.kunfeng2002.dataandhibernate.model.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

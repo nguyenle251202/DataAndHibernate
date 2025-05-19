@@ -15,4 +15,5 @@ public class Product {
     private int Pid;
     private String Pname;
     private double Pprice;
+    private double PtotalQuantity;
 }

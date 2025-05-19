@@ -19,4 +19,7 @@ public interface CustomerDAO {
     public void updateCustomer(List<Customer> customers);
 
     public void deleteCustomer(int id);
+
+    @Transactional
+    public List<Customer> getTotal();
 }

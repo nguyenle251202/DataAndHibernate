@@ -21,12 +21,19 @@ public class ProductDAOImpl implements ProductDAO {
         product.setPid(rs.getInt("idProduct"));
         product.setPname(rs.getString("nameProduct"));
         product.setPprice(rs.getDouble("priceProduct"));
+        product.setPtotalQuantity(rs.getDouble("totalQuantity"));
         return product;
     };
 
     @Override
     public List<Product> productList() {
         String sql = "SELECT * FROM product";
+        return jdbcTemplate.query(sql, productRowMapper);
+    }
+
+    @Override
+    public List<Product> HightestList() throws DataAccessException {
+        String sql = "SELECT * FROM product ORDER BY totalQuantity DESC limit 5";
         return jdbcTemplate.query(sql, productRowMapper);
     }
 
