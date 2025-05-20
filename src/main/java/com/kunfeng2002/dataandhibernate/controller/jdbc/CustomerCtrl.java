@@ -1,4 +1,4 @@
-package com.kunfeng2002.dataandhibernate.controller;
+package com.kunfeng2002.dataandhibernate.controller.jdbc;
 
 import com.kunfeng2002.dataandhibernate.dao.CustomerDAO;
 import com.kunfeng2002.dataandhibernate.model.Customer;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/jdbc/customer")
 public class CustomerCtrl {
 
     private final CustomerDAO customerDAO;

@@ -1,12 +1,11 @@
 package com.kunfeng2002.dataandhibernate.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,9 +19,11 @@ public class Order {
     private int Oid;
     private LocalDate Odate;
     @Transient
+    @ManyToOne
     private Customer Ocustomer;
     @Transient
-    private OrderItem Oorderitem;
+    @OneToMany()
+    private List<OrderItem> Oorderitem;
     private double Ototalprice;
     private String month;
 

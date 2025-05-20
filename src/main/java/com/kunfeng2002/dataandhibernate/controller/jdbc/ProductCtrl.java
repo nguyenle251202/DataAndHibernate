@@ -1,4 +1,4 @@
-package com.kunfeng2002.dataandhibernate.controller;
+package com.kunfeng2002.dataandhibernate.controller.jdbc;
 
 import com.kunfeng2002.dataandhibernate.dao.ProductDAO;
 import com.kunfeng2002.dataandhibernate.model.Product;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/jdbc/product")
 public class ProductCtrl {
 
     private final ProductDAO productDAO;
