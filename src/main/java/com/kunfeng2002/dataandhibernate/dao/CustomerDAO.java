@@ -1,6 +1,8 @@
 package com.kunfeng2002.dataandhibernate.dao;
 
 import com.kunfeng2002.dataandhibernate.model.Customer;
+import org.springframework.data.jpa.repository.NativeQuery;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +10,7 @@ import java.util.List;
 
 @Service
 public interface CustomerDAO {
+
     public List<Customer> getCustomers();
 
     public Customer getCustomer(int id);
